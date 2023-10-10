@@ -1,0 +1,26 @@
+{
+  "name": "image-minify",
+  "version": "1.0.0",
+  "description": "An image utility library for compression, coversion and many more!",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EOEboh/image-minify.git"
+  },
+  "keywords": [
+    "image_compressor",
+    "compression",
+    "minify",
+    "jpeg",
+    "webp"
+  ],
+  "author": "Emmanuel O. Eboh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EOEboh/image-minify/issues"
+  },
+  "homepage": "https://github.com/EOEboh/image-minify#readme"
+}
