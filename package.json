@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/EOEboh/image-minify/issues"
   },
-  "homepage": "https://github.com/EOEboh/image-minify#readme"
+  "homepage": "https://github.com/EOEboh/image-minify#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
 }
