@@ -4,30 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/dist/output.css" rel="stylesheet" />
-    <title>Document</title>
+    <script src="./scripts/feather.js"></script>
+    <title>Image Minify</title>
   </head>
-  <body class="p-3">
+  <body
+    class="font-sans sm:p-6 p-3 h-screen bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-gray-900 to-gray-600 bg-gradient-to-r"
+  >
     <div class="flex justify-center items-center">
-      <h1 class="text-3xl font-bold underline">Hello Image Minify</h1>
+      <h1 class="text-3xl font-bold underline text-gray-50">Image Minify</h1>
     </div>
 
     <main>
-      <section class="flex justify-evenly m-3">
+      <section class="sm:grid grid-cols-2 gap-4 mt-4">
         <section>
-          <input type="file" accept="image/*" id="uploadEl" />
+          <div class="mb-3 w-full md:w-auto">
+            <label
+              for="uploadEl"
+              class="mb-2 inline-block text-neutral-700 dark:text-neutral-200 text-gray-50"
+              >Large file input example</label
+            >
+            <input
+              class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] font-normal leading-[2.15] text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-gray focus:text-neutral-700 focus:shadow-te-gray focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-gray"
+              id="uploadEl"
+              accept="image/*"
+              type="file"
+            />
+          </div>
         </section>
 
         <section class="">
-          <img
-            id="compressed-image"
-            src=""
-            alt="Image Description"
-            width="400"
-            height="400"
-          />
+          <div class="flex flex-col gap-2">
+            <figcaption
+              class="mt-2 text-sm sm:text-left text-center text-gray-50 dark:text-gray-400"
+            >
+              Image caption
+            </figcaption>
+            <img
+              id="uploaded-image"
+              src="./img/default.jpg"
+              alt="Image Description"
+              class="h-auto max-w-full rounded-lg"
+              onchange="return fileValidation()"
+            />
+          </div>
+        </section>
+
+        <section class="mt-4 mb-4">
+          <button
+            type="button"
+            class="flex inline-block rounded bg-black px-12 pb-2 pt-2.5 rounded-full text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-gray-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-gray-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+          >
+            <div class="flex gap-2 items-center">
+              <span class="text-base"> Compress </span>
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <use href="./icons/feather-sprite.svg#arrow-up" />
+              </svg>
+            </div>
+          </button>
+        </section>
+
+        <section class="">
+          <div class="flex flex-col gap-2">
+            <figcaption
+              class="mt-2 text-sm sm:text-left text-center text-gray-50 dark:text-gray-400"
+            >
+              Image caption
+            </figcaption>
+            <img
+              id="compressed-image"
+              src="./img/default.jpg"
+              alt="Image Description"
+              class="h-auto max-w-full rounded-lg"
+            />
+          </div>
         </section>
       </section>
     </main>
   </body>
   <script type="text/javascript" src="./scripts/main.js"></script>
+  <script>
+    feather.replace();
+  </script>
 </html>
