@@ -25,5 +25,8 @@
   "homepage": "https://github.com/EOEboh/image-minify#readme",
   "devDependencies": {
     "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.1"
   }
 }
