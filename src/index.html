@@ -28,6 +28,7 @@
               id="uploadEl"
               accept="image/*"
               type="file"
+              onchange="return fileValidation()"
             />
           </div>
         </section>
@@ -44,7 +45,6 @@
               src="./img/default.jpg"
               alt="Image Description"
               class="h-auto max-w-full rounded-lg"
-              onchange="return fileValidation()"
             />
           </div>
         </section>
@@ -53,6 +53,7 @@
           <button
             type="button"
             class="flex inline-block rounded bg-black px-12 pb-2 pt-2.5 rounded-full text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-gray-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-gray-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            id="compress-btn"
           >
             <div class="flex gap-2 items-center">
               <span class="text-base"> Compress </span>
@@ -89,6 +90,36 @@
       </section>
     </main>
   </body>
+
+  <script>
+    function fileValidation() {
+      var fileInput = document.getElementById("uploadEl");
+
+      var filePath = fileInput.value;
+
+      // Allowing file type
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+      if (!allowedExtensions.exec(filePath)) {
+        alert("Invalid file type");
+        fileInput.value = "";
+        return false;
+      } else {
+        // Image preview
+        if (fileInput.files && fileInput.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            document.getElementById(
+              "uploaded-image"
+            ).src = `${e.target.result}`;
+            console.log("e.target.result", e.target.result);
+          };
+
+          reader.readAsDataURL(fileInput.files[0]);
+        }
+      }
+    }
+  </script>
   <script type="text/javascript" src="./scripts/main.js"></script>
   <script>
     feather.replace();
