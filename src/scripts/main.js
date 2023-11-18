@@ -1,3 +1,8 @@
+// Initialization for ES Users
+import { Collapse, Select, initTE } from "tw-elements";
+
+initTE({ Collapse, Select });
+
 const uploadElement = document.getElementById("uploadEl");
 
 uploadElement.addEventListener("change", () => {

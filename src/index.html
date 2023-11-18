@@ -7,6 +7,200 @@
     <script src="./scripts/feather.js"></script>
     <title>Image Minify</title>
   </head>
+  <body class="font-sans h-screen bg-main">
+    <header class="bg-black py-2.5">
+      <!-- Main navigation container -->
+      <nav
+        class="relative flex w-full flex-nowrap items-center justify-between bg-black py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:flex-wrap lg:justify-start lg:py-4"
+        data-te-navbar-ref
+      >
+        <div
+          class="bg-black flex w-full flex-wrap items-center justify-between px-3"
+        >
+          <div class="ml-2">
+            <a
+              class="uppercase text-xl text-white dark:text-neutral-200"
+              href="#"
+            >
+              image minify</a
+            >
+          </div>
+          <!-- Hamburger button for mobile view -->
+          <button
+            class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+            type="button"
+            data-te-collapse-init
+            data-te-target="#navbarSupportedContent2"
+            aria-controls="navbarSupportedContent2"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <!-- Hamburger icon -->
+            <span class="[&>svg]:w-7">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="white"
+                class="h-7 w-7"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+
+          <!-- Collapsible navbar container -->
+          <div
+            class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto"
+            id="navbarSupportedContent2"
+            data-te-collapse-item
+          >
+            <!-- Left links -->
+            <ul
+              class="list-style-none mr-auto flex flex-col pl-0 lg:mt-1 lg:flex-row"
+              data-te-navbar-nav-ref
+            >
+              <!-- Home link -->
+              <li
+                class="my-4 pl-2 lg:my-0 lg:pl-2 lg:pr-1"
+                data-te-nav-item-ref
+              >
+                <a
+                  class="active text-gray-600 lg:px-2 [&.active]:text-white/90 dark:[&.active]:text-neutral-400"
+                  aria-current="page"
+                  href="#"
+                  data-te-nav-link-ref
+                  >Home</a
+                >
+              </li>
+              <!-- Features link -->
+              <li
+                class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
+                data-te-nav-item-ref
+              >
+                <a
+                  class="p-0 text-gray-600 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-white/90 dark:[&.active]:text-neutral-400"
+                  href="#"
+                  data-te-nav-link-ref
+                  >Features</a
+                >
+              </li>
+              <!-- Pricing link -->
+              <li
+                class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
+                data-te-nav-item-ref
+              >
+                <a
+                  class="p-0 text-gray-600 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                  href="#"
+                  data-te-nav-link-ref
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section
+        class="mx-2 my-4 px-3 py-20 border-gray-50 border-dashed border-2 bg-white rounded-xl"
+      >
+        <div class="mb-3 flex flex-col items-center justify-center gap-4">
+          <div class="text-center">
+            Insert Image Here and Compress Images with the best quality and
+            compression.
+          </div>
+          <label
+            for="formFile"
+            class="mb-2 inline-block text-neutral-700 dark:text-neutral-200 text-gray-50 text-center"
+          >
+            Reduce the file size of your images at once. Supports: JPG, PNG,
+            GIF, PDF, WebP
+          </label>
+          <input
+            class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+            type="file"
+            id="formFile"
+          />
+        </div>
+      </section>
+      <section class="mx-2 my-2 px-3 py-16">
+        <h2 class="text-black text-lg font-normal leading-6 text-left">
+          Compression Settings
+        </h2>
+        <div class="flex flex-col justify-center gap-4">
+          <div class="bg-white p-6 mt-4">
+            <h4 class="text-base font-medium leading-6 text-gray-50 mb-2">
+              Resolution
+            </h4>
+            <select data-te-select-init>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="bg-white p-6 mt-4">
+            <h4 class="text-base font-medium leading-6 text-gray-50 mb-2">
+              Compress Image to:
+            </h4>
+            <select data-te-select-init>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-px my-2 px-3 py-4">
+        <div class="flex flex-col justify-center">
+          <button>Compress</button>
+          <div class="bg-white p-6 mt-4">
+            <div class="flex justify-between">
+              <h4 class="text-base font-medium leading-6 text-gray-50 mb-2">
+                Compression
+              </h4>
+              <div>0%</div>
+            </div>
+            <select data-te-select-init>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+              <option value="5">Five</option>
+              <option value="6">Six</option>
+              <option value="7">Seven</option>
+              <option value="8">Eight</option>
+            </select>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+    <script
+      type="text/javascript"
+      src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"
+    ></script>
+    <script type="text/javascript" src="./scripts/main.js"></script>
+    <script>
+      feather.replace();
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <script src="./scripts/feather.js"></script>
+    <title>Image Minify</title>
+  </head>
   <body
     class="font-sans sm:p-6 p-3 h-screen bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-gray-900 to-gray-600 bg-gradient-to-r"
   >
@@ -50,6 +244,14 @@
         </section>
 
         <section class="mt-4 mb-4">
+          <select data-te-select-init data-te-select-size="sm">
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+            <option value="5">Five</option>
+          </select>
+          <label data-te-select-label-ref>Desired Image Format</label>
           <button
             type="button"
             class="flex inline-block rounded bg-black px-12 pb-2 pt-2.5 rounded-full text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-gray-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-gray-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
@@ -124,4 +326,4 @@
   <script>
     feather.replace();
   </script>
-</html>
+</html> -->
