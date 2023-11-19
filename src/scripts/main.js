@@ -1,7 +1,7 @@
 // Initialization for ES Users
-import { Collapse, Select, initTE } from "tw-elements";
+import { Collapse, Select, Ripple, initTE } from "tw-elements";
 
-initTE({ Collapse, Select });
+initTE({ Collapse, Select, Ripple });
 
 const uploadElement = document.getElementById("uploadEl");
 
@@ -44,7 +44,7 @@ uploadElement.addEventListener("change", () => {
           });
         },
         "image/webp",
-        0.4
+        0.9
       );
     });
   };
