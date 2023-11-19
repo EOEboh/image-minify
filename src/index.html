@@ -124,11 +124,14 @@
           <input
             class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
             type="file"
-            id="formFile"
+            id="uploadEl"
+            accept="image/*"
+            onchange="return fileValidation()"
           />
         </div>
       </section>
-      <section class="mx-2 my-2 px-3 py-16">
+
+      <section class="mx-2 my-2 px-3 py-12">
         <h2 class="text-black text-lg font-normal leading-6 text-left">
           Compression Settings
         </h2>
@@ -137,54 +140,122 @@
             <h4 class="text-base font-medium leading-6 text-gray-50 mb-2">
               Resolution
             </h4>
-            <select data-te-select-init>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <div class="bg-black text-white rounded-lg">
+              <select data-te-select-init>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
           </div>
           <div class="bg-white p-6 mt-4">
             <h4 class="text-base font-medium leading-6 text-gray-50 mb-2">
               Compress Image to:
             </h4>
-            <select data-te-select-init>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <div class="bg-black text-white rounded-lg">
+              <select data-te-select-init>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="m-px my-2 px-3 py-4">
-        <div class="flex flex-col justify-center">
-          <button>Compress</button>
           <div class="bg-white p-6 mt-4">
             <div class="flex justify-between">
-              <h4 class="text-base font-medium leading-6 text-gray-50 mb-2">
+              <h4 class="text-base font-bold leading-6 text-gray-50 mb-2">
                 Compression
               </h4>
               <div>0%</div>
             </div>
-            <select data-te-select-init>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              <option value="4">Four</option>
-              <option value="5">Five</option>
-              <option value="6">Six</option>
-              <option value="7">Seven</option>
-              <option value="8">Eight</option>
-            </select>
+            <div>
+              <input
+                type="range"
+                class="transparent h-[4px] w-full cursor-pointer appearance-none border-transparent bg-black dark:bg-neutral-600"
+                min="0"
+                max="100"
+                id="customRange2"
+              />
+            </div>
           </div>
         </div>
       </section>
+
+      <section class="">
+        <div class="flex flex-col gap-2">
+          <figcaption
+            class="mt-2 text-sm sm:text-left text-center text-gray-50 dark:text-gray-400"
+          >
+            Your compressed image will show below:
+          </figcaption>
+          <img
+            id="compressed-image"
+            src="./img/default.jpg"
+            alt="Image Description"
+            class="h-auto max-w-full rounded-lg"
+          />
+        </div>
+      </section>
+
+      <section class="m-px my-2 px-3 py-4">
+        <h2 class="text-black text-lg font-normal leading-6 text-left">
+          Estimated Reduce Size
+        </h2>
+        <div class="bg-white p-6 mt-4 flex flex-col gap-2">
+          <div class="text-gray-50">Almost 50% reduced</div>
+          <h4 class="text-black">54.3MB</h4>
+          <button
+            type="button"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            class="inline-block rounded bg-black px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+          >
+            <span class="text-white text-xs leading-5 capitalize">
+              Compress File</span
+            >
+          </button>
+        </div>
+      </section>
     </main>
-    <footer></footer>
+    <footer class="bg-black py-4 px-3">
+      <div class="">
+        <h5 class="text-white">All Rights Reserved</h5>
+        <div class="text-white">&copy;</div>
+      </div>
+    </footer>
+    <script>
+      function fileValidation() {
+        var fileInput = document.getElementById("uploadEl");
+
+        var filePath = fileInput.value;
+
+        // Allowing file type
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+          alert("Invalid file type");
+          fileInput.value = "";
+          return false;
+        } else {
+          // Image preview
+          if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              document.getElementById(
+                "uploaded-image"
+              ).src = `${e.target.result}`;
+              console.log("e.target.result", e.target.result);
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+          }
+        }
+      }
+    </script>
     <script
       type="text/javascript"
       src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"
     ></script>
+
     <script type="text/javascript" src="./scripts/main.js"></script>
     <script>
       feather.replace();
