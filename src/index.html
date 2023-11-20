@@ -153,10 +153,10 @@
               Compress Image to:
             </h4>
             <div class="bg-black text-white rounded-lg">
-              <select data-te-select-init>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select data-te-select-init id="compressing-format-select">
+                <option value="image/webp">WebP (recommended)</option>
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG/JPEG</option>
               </select>
             </div>
           </div>
@@ -184,6 +184,7 @@
         <div class="flex flex-col gap-2">
           <figcaption
             class="mt-2 text-sm sm:text-left text-center text-gray-50 dark:text-gray-400"
+            id="compress-figcaption"
           >
             Your compressed image will show below:
           </figcaption>
@@ -202,14 +203,18 @@
         </h2>
         <div class="bg-white p-6 mt-4 flex flex-col gap-2">
           <div class="text-gray-50">Almost 50% reduced</div>
-          <h4 class="text-black">54.3MB</h4>
+          <h4 class="text-black" id="compress-file-size">54.3MB</h4>
           <button
             type="button"
             data-te-ripple-init
             data-te-ripple-color="light"
             class="inline-block rounded bg-black px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            id="compress-btn"
           >
-            <span class="text-white text-xs leading-5 capitalize">
+            <span
+              class="text-white text-xs leading-5 capitalize"
+              id="cta-btn-text"
+            >
               Compress File</span
             >
           </button>
@@ -239,12 +244,12 @@
           // Image preview
           if (fileInput.files && fileInput.files[0]) {
             var reader = new FileReader();
-            reader.onload = function (e) {
-              document.getElementById(
-                "uploaded-image"
-              ).src = `${e.target.result}`;
-              console.log("e.target.result", e.target.result);
-            };
+            // reader.onload = function (e) {
+            //   document.getElementById(
+            //     "uploaded-image"
+            //   ).src = `${e.target.result}`;
+            //   console.log("e.target.result", e.target.result);
+            // };
 
             reader.readAsDataURL(fileInput.files[0]);
           }
