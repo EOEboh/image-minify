@@ -59,7 +59,7 @@ uploadElement.addEventListener("change", () => {
               compressBtnText.innerHTML = `
               <a href="${dataURL}" download="${uploadedFile.name
                 .split(".")
-                .unshift()}_compressed">
+                .shift()}_compressed">
                 <button>Download</button>
               </a>
             `;
