@@ -1,33 +1,15 @@
 {
   "name": "image-minify",
-  "version": "1.0.0",
-  "description": "An image utility library for compression, coversion and many more!",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EOEboh/image-minify.git"
-  },
-  "keywords": [
-    "image_compressor",
-    "compression",
-    "minify",
-    "jpeg",
-    "webp"
-  ],
-  "author": "Emmanuel O. Eboh",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/EOEboh/image-minify/issues"
-  },
-  "homepage": "https://github.com/EOEboh/image-minify#readme",
   "devDependencies": {
-    "tailwindcss": "^3.3.3"
-  },
-  "dependencies": {
-    "feather-icons": "^4.29.1",
-    "tw-elements": "^1.0.0"
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4"
   }
 }
