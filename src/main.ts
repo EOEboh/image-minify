@@ -1,24 +1,95 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import * as Compress from "./modules/compressImage";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const fileInput = document.querySelector<HTMLInputElement>("#upload");
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const originalImage =
+  document.querySelector<HTMLImageElement>("#originalImage");
+
+const CompressBtn = document.querySelector(
+  "#compress-btn"
+) as HTMLButtonElement;
+
+const resizingElement =
+  document.querySelector<HTMLInputElement>("#resizingRange");
+const qualityElement =
+  document.querySelector<HTMLInputElement>("#qualityRange");
+
+// const uploadButton = document.querySelector<HTMLButtonElement>("#uploadButton");
+
+let resizingFactor = 0.8;
+let quality = 0.8;
+
+// initializing the compressed image
+if (originalImage) {
+  Compress.compressImage(originalImage, resizingFactor, quality);
+}
+
+fileInput?.addEventListener("change", async () => {
+  const file = (fileInput.files as FileList)[0];
+  if (file && originalImage) {
+    // storing the original image
+    originalImage.src = await fileToDataUri(file);
+
+    // compressing the uploaded image
+    CompressBtn.addEventListener("click", () => {
+      Compress.compressImage(originalImage, resizingFactor, quality);
+    });
+  }
+});
+
+resizingElement?.addEventListener("input", (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  resizingFactor = parseInt(target.value) / 100;
+  if (originalImage) {
+    Compress.compressImage(originalImage, resizingFactor, quality);
+  }
+});
+
+qualityElement?.addEventListener("input", (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  quality = parseInt(target.value) / 100;
+  if (originalImage) {
+    Compress.compressImage(originalImage, resizingFactor, quality);
+  }
+});
+
+// uploadButton?.addEventListener("click", () => {
+//   // uploading the compressed image to Imgur (if present)
+//   if (compressedImageBlob) {
+//     const formData = new FormData();
+//     formData.append("image", compressedImageBlob);
+
+//     fetch("https://api.imgur.com/3/image/", {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json",
+//         Authorization: "Client-ID YOUR_CLIENT_ID",
+//       },
+//       body: formData,
+//     }).then((response) => {
+//       if (response?.status === 403) {
+//         alert("Invalid Client-ID!");
+//       } else if (response?.status === 200) {
+//         // retrieving the URL of the image just uploaded to Imgur
+//         response.json().then((jsonResponse) => {
+//           alert(`URL: ${jsonResponse.data?.link}`);
+//         });
+//         alert("Upload completed successfully!");
+//       } else {
+//         console.error(response);
+//       }
+//     });
+//   } else {
+//     alert("Resized and compressed image missing!");
+//   }
+// });
+
+function fileToDataUri(field: File): Promise<string> {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      resolve(reader.result as string);
+    });
+    reader.readAsDataURL(field);
+  });
+}
