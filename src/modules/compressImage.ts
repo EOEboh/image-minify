@@ -1,6 +1,9 @@
+import bytesToSize from "../utils/bytesToSize";
+
 function compressImage(
   imgToCompress: HTMLImageElement,
-  resizingFactor: number,
+  dimensionFactor: number,
+  imgFormat: string,
   quality: number
 ): void {
   const compressedImage =
@@ -18,8 +21,8 @@ function compressImage(
   const originalWidth = imgToCompress.width;
   const originalHeight = imgToCompress.height;
 
-  const canvasWidth = originalWidth * resizingFactor;
-  const canvasHeight = originalHeight * resizingFactor;
+  const canvasWidth = originalWidth * dimensionFactor;
+  const canvasHeight = originalHeight * dimensionFactor;
 
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
@@ -31,6 +34,7 @@ function compressImage(
     (blob) => {
       if (blob) {
         compressedImageBlob = blob;
+        console.log("blob", blob);
         if (compressedImage) {
           compressedImage.src = URL.createObjectURL(compressedImageBlob);
         }
@@ -40,21 +44,9 @@ function compressImage(
         }
       }
     },
-    "image/jpeg",
+    imgFormat,
     quality
   );
-}
-
-// source: https://stackoverflow.com/a/18650828
-function bytesToSize(bytes: number): string {
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-
-  if (bytes === 0) {
-    return "0 Byte";
-  }
-
-  const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return Math.round(bytes / Math.pow(1024, i)) + " " + sizes[i];
 }
 
 export { compressImage };

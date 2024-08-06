@@ -15,21 +15,19 @@
   </head>
   <body class="bg-slate-500">
     <main id="main">
-      <h1 class="text-center">Compress Image</h1>
       <div class="flex h-full p-4">
-        <section class="w-3/12 flex flex-col justify-between">
+        <section class="w-3/12 flex flex-col items-center justify-between">
           <div class="flex flex-col gap-4">
             <h2>Compression Options</h2>
             <input id="upload" type="file" accept="image/*" />
             <div class="col-auto my-1">
               <label class="mr-sm-2" for="inlineFormCustomSelect"
-                >Preference</label
+                >Image Format</label
               >
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select class="custom-select mr-sm-2" id="img-format">
+                <option selected value="image/png">PNG</option>
+                <option value="image/jpeg">JPEG</option>
+                <option value="image/webp">WEBP</option>
               </select>
             </div>
           </div>
@@ -51,7 +49,7 @@
                 type="range"
                 min="1"
                 max="100"
-                value="80"
+                value="100"
                 id="qualityRange"
               />
             </div>
@@ -75,29 +73,28 @@
           </div>
         </section>
 
-        <section class="w-9/12">
-          <div class="flex flex-col items-center justify-center">
-            <h2 class="text-center">Uploaded</h2>
-
+        <section class="w-9/12 flex flex-col items-center gap-4">
+          <div
+            class="hidden flex flex-col items-center justify-center w-6/12 h-80 relative border rounded-3xl"
+          >
             <img
               style="margin-top: 5px"
               id="originalImage"
-              width="50%"
-              src="demo.png"
+              src="/demo.png"
               crossorigin="anonymous"
+              class="w-full h-full object-cover absolute p-3"
             />
           </div>
 
-          <div class="flex flex-col items-center justify-center">
-            <h2 class="text-center">Compressed</h2>
-
-            <h2>Compressed Image</h2>
-            <div><b>Size:</b> <span id="size"></span></div>
-            <img id="compressedImage" />
-            <!-- <div>
-              <button id="uploadButton">Upload to Imgur</button>
-            </div> -->
+          <div
+            class="border rounded-3xl flex flex-col items-center justify-center w-3/6 h-80 relative overflow-hidden"
+          >
+            <img
+              id="compressedImage"
+              class="object-contain w-full h-80 absolute rounded-3xl"
+            />
           </div>
+          <div><b>Size:</b> <span id="size"></span></div>
         </section>
       </div>
     </main>

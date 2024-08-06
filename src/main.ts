@@ -1,7 +1,17 @@
 import * as Compress from "./modules/compressImage";
+import bytesToSize from "./utils/bytesToSize";
 
 const fileInput = document.querySelector<HTMLInputElement>("#upload");
 
+let imgFormat: string;
+document
+  .getElementById("img-format")
+  ?.addEventListener("change", (event: Event) => {
+    const target = event.target as HTMLSelectElement;
+    imgFormat = target.value;
+  });
+
+// console.log("formatSelect", formatSelect.value);
 const originalImage =
   document.querySelector<HTMLImageElement>("#originalImage");
 
@@ -14,14 +24,21 @@ const resizingElement =
 const qualityElement =
   document.querySelector<HTMLInputElement>("#qualityRange");
 
+const sizeElement = document.querySelector<HTMLSpanElement>("#size");
+
 // const uploadButton = document.querySelector<HTMLButtonElement>("#uploadButton");
 
-let resizingFactor = 0.8;
-let quality = 0.8;
+let dimensionFactor = 1;
+let quality = 1;
 
 // initializing the compressed image
 if (originalImage) {
-  Compress.compressImage(originalImage, resizingFactor, quality);
+  Compress.compressImage(
+    originalImage,
+    dimensionFactor,
+    (imgFormat = "image/png"),
+    quality
+  );
 }
 
 fileInput?.addEventListener("change", async () => {
@@ -30,18 +47,29 @@ fileInput?.addEventListener("change", async () => {
     // storing the original image
     originalImage.src = await fileToDataUri(file);
 
+    console.log("file", file);
+    if (sizeElement) {
+      sizeElement.innerHTML = bytesToSize(file.size);
+    }
+
     // compressing the uploaded image
     CompressBtn.addEventListener("click", () => {
-      Compress.compressImage(originalImage, resizingFactor, quality);
+      Compress.compressImage(
+        originalImage,
+        dimensionFactor,
+        imgFormat,
+        quality
+      );
     });
   }
 });
 
 resizingElement?.addEventListener("input", (e: Event) => {
   const target = e.target as HTMLInputElement;
-  resizingFactor = parseInt(target.value) / 100;
+  // resizingFactor = parseInt(target.value) / 100;
+  dimensionFactor = parseInt(target.value) / 100;
   if (originalImage) {
-    Compress.compressImage(originalImage, resizingFactor, quality);
+    Compress.compressImage(originalImage, dimensionFactor, imgFormat, quality);
   }
 });
 
@@ -49,40 +77,9 @@ qualityElement?.addEventListener("input", (e: Event) => {
   const target = e.target as HTMLInputElement;
   quality = parseInt(target.value) / 100;
   if (originalImage) {
-    Compress.compressImage(originalImage, resizingFactor, quality);
+    Compress.compressImage(originalImage, dimensionFactor, imgFormat, quality);
   }
 });
-
-// uploadButton?.addEventListener("click", () => {
-//   // uploading the compressed image to Imgur (if present)
-//   if (compressedImageBlob) {
-//     const formData = new FormData();
-//     formData.append("image", compressedImageBlob);
-
-//     fetch("https://api.imgur.com/3/image/", {
-//       method: "POST",
-//       headers: {
-//         Accept: "application/json",
-//         Authorization: "Client-ID YOUR_CLIENT_ID",
-//       },
-//       body: formData,
-//     }).then((response) => {
-//       if (response?.status === 403) {
-//         alert("Invalid Client-ID!");
-//       } else if (response?.status === 200) {
-//         // retrieving the URL of the image just uploaded to Imgur
-//         response.json().then((jsonResponse) => {
-//           alert(`URL: ${jsonResponse.data?.link}`);
-//         });
-//         alert("Upload completed successfully!");
-//       } else {
-//         console.error(response);
-//       }
-//     });
-//   } else {
-//     alert("Resized and compressed image missing!");
-//   }
-// });
 
 function fileToDataUri(field: File): Promise<string> {
   return new Promise((resolve) => {
